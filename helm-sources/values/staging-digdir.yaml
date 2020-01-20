@@ -1,0 +1,4 @@
+#DValues for staging environment
+NAMESPACE: staging
+FDK_SQL_PROXY_CLUSTER: staging
+FDK_SQL_PROXY_SQL_ENVIRONMENT: fdk-dev
