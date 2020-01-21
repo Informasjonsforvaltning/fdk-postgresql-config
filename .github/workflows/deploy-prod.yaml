@@ -13,6 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Create yaml file from secret
+        id: write_file
+        uses: timheuer/base64-to-file@v1
+        with:
+          fileName: 'secret.yaml'
+          encodedString: ${{ secrets.FDK_POSTGRESQL_PROD }}
+
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
         with:
@@ -21,8 +28,7 @@ jobs:
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
-            helm template -f ./helm/postgresql-sqlproxy/values/production.yaml ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
-            cat ./kubectlapply.yaml
+            helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
 
