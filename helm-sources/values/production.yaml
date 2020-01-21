@@ -1,4 +1,0 @@
-#DValues for staging environment
-NAMESPACE: prod
-FDK_SQL_PROXY_CLUSTER: fdk-prod
-FDK_SQL_PROXY_SQL_ENVIRONMENT: prod
