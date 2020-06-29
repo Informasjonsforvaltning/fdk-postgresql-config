@@ -20,7 +20,7 @@
 # DB_NAME (bør ha ENV i seg, pga flere env pr prosjekt/cluster)
 # POSTGRESQL_PORT  (bør være 5432)
 # kubectl create secret --namespace=ut1 generic postgresql-ut1-key --from-file=key.json=sa.json
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -56,6 +56,9 @@ spec:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /var/secrets/google/key.json
           image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          resources:
+            requests:
+              memory: {{ required "Missing value FDK_POSTGRESQL_MEMORY" .Values.FDK_POSTGRESQL_MEMORY | quote }}
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs
