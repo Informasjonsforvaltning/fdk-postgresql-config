@@ -55,7 +55,7 @@ spec:
         - env:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /var/secrets/google/key.json
-          image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          image: {{ required "Missing value FDK_POSTGRESQL_IMAGE" .Values.FDK_POSTGRESQL_IMAGE }}
           resources:
             requests:
               memory: {{ required "Missing value FDK_POSTGRESQL_MEMORY" .Values.FDK_POSTGRESQL_MEMORY | quote }}
