@@ -1,4 +1,4 @@
-name: Deploy to demo (digdir)
+name: Deploy to demo
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
         with:
-          helm: 2.14.3
+          helm: 2.16.7
           command: |
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
@@ -52,4 +52,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"C7NTH118T\",\"text\":\"Application: postgresql deployed to digdir-demo\"}'
+          args: '{\"channel\":\"C7NTH118T\",\"text\":\"Application: postgresql deployed to demo\"}'
