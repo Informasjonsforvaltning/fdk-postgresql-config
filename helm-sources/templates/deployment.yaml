@@ -72,7 +72,6 @@ spec:
           ports:
             - containerPort: 5432
               protocol: TCP
-          resources: {}
           terminationMessagePath: /dev/termination-log
       dnsPolicy: ClusterFirst
       restartPolicy: Always
