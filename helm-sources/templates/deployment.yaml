@@ -12,26 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-# dynamiske ting
-# postgresql-ENV-key
-# PROJECT_ID
-# REGION (til cloud sql instance)
-# DB_NAME (bør ha ENV i seg, pga flere env pr prosjekt/cluster)
-# POSTGRESQL_PORT  (bør være 5432)
-# kubectl create secret --namespace=ut1 generic postgresql-ut1-key --from-file=key.json=sa.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    run: postgresql-sqlproxy
+    fdk.service: postgresql-sqlproxy
   name: postgresql-sqlproxy
   namespace: {{ required "Missing value NAMESPACE" .Values.NAMESPACE }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      run: postgresql-sqlproxy
+      fdk.service: postgresql-sqlproxy
   strategy:
     rollingUpdate:
       maxSurge: 1
