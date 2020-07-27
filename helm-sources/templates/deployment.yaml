@@ -33,7 +33,7 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        run: postgresql-sqlproxy
+        fdk.service: postgresql-sqlproxy
     spec:
       volumes:
         - name: google-cloud-key
@@ -45,8 +45,8 @@ spec:
             path: /etc/ssl/certs
       containers:
         - env:
-            - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /var/secrets/google/key.json
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /var/secrets/google/key.json
           image: {{ required "Missing value FDK_POSTGRESQL_IMAGE" .Values.FDK_POSTGRESQL_IMAGE }}
           resources:
             requests:
