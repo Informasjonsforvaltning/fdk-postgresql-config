@@ -3,12 +3,12 @@ entries:
   postgresql-sqlproxy:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-27T12:48:45.033538442+02:00"
+    created: "2020-07-27T12:57:30.620644832+02:00"
     description: Config for PostgreSQL
-    digest: 3155e7b7ee1c47f1e6674561ae853ffd6d35b198fa69756f8e5de437fd2f83e6
+    digest: 5ea6f299241e37d1a053d659d97d5414ecae5f9631db36313ff9c97dc527156e
     home: https://github.com/Informasjonsforvaltning/fdk-postgresql-config
     name: postgresql-sqlproxy
     urls:
     - https://informasjonsforvaltning.github.io/fdk-postgresql-config/postgresql-sqlproxy-0.1.0.tgz
     version: 0.1.0
-generated: "2020-07-27T12:48:45.031609966+02:00"
+generated: "2020-07-27T12:57:30.62012156+02:00"
