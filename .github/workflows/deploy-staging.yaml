@@ -21,7 +21,7 @@ jobs:
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
 
       - name: Apply Helm template
-        uses: stefanprodan/kube-tools@v1
+        uses: stefanprodan/kube-tools@master
         with:
           filelocation: ${{ steps.write_file.outputs.filePath }}
           helm: 2.16.7
@@ -31,7 +31,7 @@ jobs:
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
-            helm template -f secret.yaml ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
+            helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
 
