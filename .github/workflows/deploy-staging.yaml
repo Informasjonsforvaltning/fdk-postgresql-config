@@ -19,15 +19,13 @@ jobs:
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
+          run: echo {{ steps.write_file.outputs.filePath }}
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@master
         with:
-          filelocation: ${{ steps.write_file.outputs.filePath }}
           helm: 2.16.7
           command: |
-            echo {{ steps.write_file.outputs.filePath }}
-            cat {{ steps.write_file.outputs.filePath }}
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
