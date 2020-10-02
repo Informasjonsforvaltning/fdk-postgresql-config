@@ -26,6 +26,7 @@ jobs:
           helm: 2.16.7
           command: |
             echo {{ steps.write_file.outputs.filePath }}
+            cat {{ steps.write_file.outputs.filePath }}
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
