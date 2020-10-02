@@ -25,6 +25,7 @@ jobs:
         with:
           helm: 2.16.7
           command: |
+            echo {{ steps.write_file.outputs.filePath }}
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
@@ -47,13 +48,13 @@ jobs:
         with:
           args: "apply -f ./kubectlapply.yaml --force"
 
-      - name: Notify slack
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          author_name: 'Application: postgresql-sqlproxy | Environment: staging'
-          fields: commit,author,workflow
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
+#      - name: Notify slack
+#        uses: 8398a7/action-slack@v3
+#        with:
+#          status: ${{ job.status }}
+#          author_name: 'Application: postgresql-sqlproxy | Environment: staging'
+#          fields: commit,author,workflow
+#        env:
+#          GITHUB_TOKEN: ${{ github.token }}
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: always()
