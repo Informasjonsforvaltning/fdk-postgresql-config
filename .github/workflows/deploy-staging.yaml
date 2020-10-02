@@ -21,6 +21,7 @@ jobs:
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
 
       - name: Apply Helm template
+        working-directory: ./temp
         uses: stefanprodan/kube-tools@master
         with:
           helm: 2.16.7
