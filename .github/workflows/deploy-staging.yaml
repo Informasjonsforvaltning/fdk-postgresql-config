@@ -11,7 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.1.0
+      - uses: actions/checkout@v1
+
+      - name: Make folder
+        run: mkdir home/runner/work/_temp
 
       - name: Create yaml file from secret
         id: write_file
@@ -23,7 +26,7 @@ jobs:
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@master
         with:
-          helmv3: 3.2.1
+          helm: 2.16.7
           command: |
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
