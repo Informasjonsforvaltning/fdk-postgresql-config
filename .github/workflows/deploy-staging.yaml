@@ -28,8 +28,6 @@ jobs:
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
-            cd ..
-            cd home/runner/work/_temp
             pwd
             ls
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
