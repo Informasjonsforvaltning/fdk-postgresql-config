@@ -13,14 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Make folder
-        run: |
-          mkdir -p home/runner/work/_temp
-          touch home/runner/work/_temp/secret.yaml
-
       - name: Create yaml file from secret
         id: write_file
-        uses: timheuer/base64-to-file@v1.0.3
+        uses: timheuer/base64-to-file@v1
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
@@ -28,12 +23,11 @@ jobs:
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@master
         with:
-          helm: 2.16.7
+          helm: 2.14.3
           command: |
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
-            echo ${{ steps.write_file.outputs.filePath }}
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
