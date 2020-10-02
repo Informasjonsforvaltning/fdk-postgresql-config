@@ -15,7 +15,7 @@ jobs:
 
       - name: Create yaml file from secret
         id: write_file
-        uses: timheuer/base64-to-file@v1
+        uses: timheuer/base64-to-file@v1.0.3
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
