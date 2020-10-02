@@ -31,6 +31,15 @@ jobs:
             cd ..
             pwd
             ls
+            cd home
+            pwd
+            ls
+            cd runner
+            pwd
+            ls
+            cd work
+            pwd
+            ls
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
