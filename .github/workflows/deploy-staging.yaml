@@ -22,8 +22,8 @@ jobs:
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@master
-        working-directory: ./temp
         with:
+          working-directory: ./temp
           helm: 2.16.7
           command: |
             helm init --client-only
