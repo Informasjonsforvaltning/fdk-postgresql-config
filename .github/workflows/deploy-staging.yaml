@@ -19,7 +19,6 @@ jobs:
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
-          run: echo {{ steps.write_file.outputs.filePath }}
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@master
