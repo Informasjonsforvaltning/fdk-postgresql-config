@@ -8,7 +8,7 @@ on:
 jobs:
   deploy-staging:
     name: Deploy postgresql-sqlproxy to staging environment when pull request is created
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     steps:
       - uses: actions/checkout@v1
@@ -19,6 +19,9 @@ jobs:
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
+
+      - name: Check yaml file
+        run: cat ${{ steps.write_file.outputs.filePath }}
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
