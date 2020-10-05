@@ -15,7 +15,7 @@ jobs:
 
       - name: Create yaml file from secret
         id: write_file
-        uses: timheuer/base64-to-file@master
+        uses: timheuer/base64-to-file@v1
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
@@ -25,6 +25,7 @@ jobs:
           cat ${{ steps.write_file.outputs.filePath }}
           echo 'pwd:'
           pwd
+          ls
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
