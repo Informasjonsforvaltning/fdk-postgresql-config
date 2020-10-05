@@ -8,10 +8,10 @@ on:
 jobs:
   deploy-staging:
     name: Deploy postgresql-sqlproxy to staging environment when pull request is created
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@master
 
       - name: Create yaml file from secret
         id: write_file
