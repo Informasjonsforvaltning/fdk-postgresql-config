@@ -23,6 +23,9 @@ jobs:
       - name: Check yaml file
         run: |
           cat ${{ steps.write_file.outputs.filePath }}
+          cd
+          ls
+          cd ..
           pwd
           ls
 
