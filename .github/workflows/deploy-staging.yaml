@@ -36,13 +36,14 @@ jobs:
             helm fetch --untar --untardir ./helm fdk-postgresql-config/postgresql-sqlproxy
             pwd
             cd ..
+            cd ..
             pwd
             cd home
             pwd
             cd runner
             pwd
             ls
-            helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
+            helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml --debug
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
 
