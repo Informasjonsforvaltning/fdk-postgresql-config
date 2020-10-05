@@ -38,8 +38,10 @@ jobs:
             cd ..
             cd ..
             pwd
+            ls
             cd home
             pwd
+            ls
             cd runner
             pwd
             ls
