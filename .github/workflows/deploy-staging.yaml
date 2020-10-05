@@ -33,7 +33,7 @@ jobs:
           helm: 2.14.3
           command: |
             helm init --client-only
-            helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
+            helm repo add fdk-postgresql-config https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgresql-config/postgresql-sqlproxy
             pwd
             ls
