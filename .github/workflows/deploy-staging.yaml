@@ -23,12 +23,11 @@ jobs:
       - name: Check yaml file
         run: |
           cat ${{ steps.write_file.outputs.filePath }}
-          echo 'pwd:'
           pwd
           ls
 
       - name: Apply Helm template
-        uses: stefanprodan/kube-tools@v1
+        uses: stefanprodan/kube-tools@master
         with:
           helm: 2.14.3
           command: |
