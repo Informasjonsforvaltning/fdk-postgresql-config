@@ -22,6 +22,8 @@ jobs:
 
       - name: Check yaml file
         run: cat ${{ steps.write_file.outputs.filePath }}
+             echo 'pwd:'
+             pwd
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
@@ -31,6 +33,8 @@ jobs:
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
+            echo 'pwd:'
+            pwd
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
