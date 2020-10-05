@@ -11,9 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - run: mkdir -p home/runner/work/_temp
+      - uses: actions/checkout@master
 
       - name: Create yaml file from secret
         id: write_file
@@ -21,8 +19,6 @@ jobs:
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
-
-      - run: cat ${{ steps.write_file.outputs.filePath }}
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@master
