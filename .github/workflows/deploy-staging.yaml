@@ -21,9 +21,10 @@ jobs:
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
 
       - name: Check yaml file
-        run: cat ${{ steps.write_file.outputs.filePath }}
-             echo 'pwd:'
-             pwd
+        run: |
+          cat ${{ steps.write_file.outputs.filePath }}
+          echo 'pwd:'
+          pwd
 
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
