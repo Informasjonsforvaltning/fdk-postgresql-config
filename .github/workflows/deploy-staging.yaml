@@ -15,7 +15,7 @@ jobs:
 
       - run: |
         mkdir -p home/runner/work/_temp
-        touch secret.yaml
+        touch /home/runner/work/_temp/secret.yaml
 
       - name: Create yaml file from secret
         id: write_file
