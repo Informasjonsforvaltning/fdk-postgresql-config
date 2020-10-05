@@ -13,7 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: mkdir -p /home/runner/work/_temp
+      - run: |
+        mkdir -p home/runner/work/_temp
+        touch secret.yaml
 
       - name: Create yaml file from secret
         id: write_file
