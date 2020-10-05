@@ -28,7 +28,7 @@ jobs:
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/ --debug
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy --debug
-            helm template -f secret.yaml ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
+            helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
 
