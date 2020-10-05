@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Create yaml file from secret
         id: write_file
-        uses: timheuer/base64-to-file@v1
+        uses: timheuer/base64-to-file@master
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_PROD }}
@@ -47,15 +47,15 @@ jobs:
         with:
           args: "apply -f ./kubectlapply.yaml --force"
 
-      - name: Notify slack
-        uses: 8398a7/action-slack@v3
-        with:
-          mention: 'channel'
-          if_mention: failure
-          status: ${{ job.status }}
-          author_name: 'Application: postgresql-sqlproxy | Environment: prod'
-          fields: commit,author,workflow,message
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
+#      - name: Notify slack
+#        uses: 8398a7/action-slack@v3
+#        with:
+#          mention: 'channel'
+#          if_mention: failure
+#          status: ${{ job.status }}
+#          author_name: 'Application: postgresql-sqlproxy | Environment: prod'
+#          fields: commit,author,workflow,message
+#        env:
+#          GITHUB_TOKEN: ${{ github.token }}
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: always()
