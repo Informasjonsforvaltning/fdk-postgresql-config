@@ -11,32 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       - name: Create yaml file from secret
         id: write_file
-        uses: timheuer/base64-to-file@master
+        uses: timheuer/base64-to-file@v1
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
 
-      - name: Check yaml file
-        run: |
-          cat ${{ steps.write_file.outputs.filePath }}
-          cd
-          ls
-          cd ..
-          pwd
-          ls
-
       - name: Apply Helm template
-        uses: stefanprodan/kube-tools@master
+        uses: stefanprodan/kube-tools@v1
         with:
           helm: 2.14.3
           command: |
             helm init --client-only --debug
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/ --debug
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy --debug
+            cat ${{ steps.write_file.outputs.filePath }}
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml --debug
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
