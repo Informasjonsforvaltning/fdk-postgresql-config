@@ -27,7 +27,7 @@ jobs:
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@v1
         with:
-          helm: 2.14.3
+          helm: 2.16.7
           command: |
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/ --debug
