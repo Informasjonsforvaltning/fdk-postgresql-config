@@ -35,7 +35,7 @@ jobs:
             helm repo add fdk-postgresql-config https://informasjonsforvaltning.github.io/fdk-postgresql-config/
             helm fetch --untar --untardir ./helm fdk-postgresql-config/postgresql-sqlproxy
             pwd
-            cd..
+            cd ..
             pwd
             cd home
             pwd
