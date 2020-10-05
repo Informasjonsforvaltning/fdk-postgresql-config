@@ -15,7 +15,7 @@ jobs:
 
       - name: Create yaml file from secret
         id: write_file
-        uses: timheuer/base64-to-file@v1
+        uses: timheuer/base64-to-file@master
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_STAGING }}
@@ -34,7 +34,7 @@ jobs:
           command: |
             helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/fdk-postgresql-config/
-            helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
+            helm fetch --untar --untardir ./helm fdk-postgresql-config/postgresql-sqlproxy
             pwd
             ls
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
