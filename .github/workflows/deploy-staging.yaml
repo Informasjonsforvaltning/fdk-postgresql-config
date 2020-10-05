@@ -8,7 +8,7 @@ on:
 jobs:
   deploy-staging:
     name: Deploy postgresql-sqlproxy to staging environment when pull request is created
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v1
