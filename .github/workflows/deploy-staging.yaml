@@ -25,7 +25,7 @@ jobs:
         with:
           helm: 2.14.3
           command: |
-            helm init --client-only --debug
+            helm init --client-only
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/ --debug
             helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy --debug
             cat ${{ steps.write_file.outputs.filePath }}
