@@ -30,7 +30,7 @@ jobs:
         #   command: |
         run: |
         helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/
-        helm pull --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
+        helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
         helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
         chmod o+w ./kubectlapply.yaml
         cat kubectlapply.yaml
