@@ -26,11 +26,10 @@ jobs:
       - name: Apply Helm template
         uses: stefanprodan/kube-tools@master
         with:
-          helm: 2.14.3
+          helmv3: 3.2.1
           command: |
-            helm init --client-only --output json
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/
-            helm fetch --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
+            helm pull --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
             chmod o+w ./kubectlapply.yaml
             cat kubectlapply.yaml
