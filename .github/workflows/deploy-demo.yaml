@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Create yaml file from secret
         id: write_file
-        uses: timheuer/base64-to-file@v1
+        uses: timheuer/base64-to-file@master
         with:
           fileName: 'secret.yaml'
           encodedString: ${{ secrets.DIGDIR_FDK_POSTGRESQL_DEMO }}
