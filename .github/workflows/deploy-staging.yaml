@@ -28,7 +28,7 @@ jobs:
         with:
           helmv3: 3.2.1
           command: |
-            helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/
+            helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/ --debug
             helm search repo fdk-postgres
             helm pull --untar --untardir ./helm fdk-postgres/postgresql-sqlproxy
             helm template -f ${{ steps.write_file.outputs.filePath }} ./helm/postgresql-sqlproxy/ > ./kubectlapply.yaml
