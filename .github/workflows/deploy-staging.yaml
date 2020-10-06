@@ -29,7 +29,7 @@ jobs:
           helm: 2.16.7
           command: |
             cat ${{ steps.write_file.outputs.filePath }}
-            helm init --client-only
+            helm init --client-only --debug
             cat ${{ steps.write_file.outputs.filePath }}
             helm repo add fdk-postgres https://informasjonsforvaltning.github.io/helm-chart/
             cat ${{ steps.write_file.outputs.filePath }}
