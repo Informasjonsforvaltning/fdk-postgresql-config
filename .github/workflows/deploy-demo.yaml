@@ -3,7 +3,8 @@ name: Deploy to demo
 on:
   push:
     branches:
-      - main
+      - deactivated
+# postgresql isn't needed in demo environment for the time being
 
 jobs:
   deploy-demo:

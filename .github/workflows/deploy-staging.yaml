@@ -3,7 +3,8 @@ name: Deploy to staging
 on:
   pull_request:
     branches:
-      - main
+      - deactivated
+# postgresql isn't needed in staging environment for the time being
 
 jobs:
   deploy-staging:
