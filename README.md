@@ -1,1 +1,1 @@
-# FDK postgresql config
+# FDK postgresql-sqlproxy config
